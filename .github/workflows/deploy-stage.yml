@@ -9,12 +9,16 @@ env:
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
+    # referencing github environment that should be used for this job
+    # environments hold secrets that are stored in the environment defined through the github ui
+    # now the job will use the secrets of the testing environment instead of the repo secrets
+    environment: testing
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.nt4j02r.mongodb.net
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
-    environment: testing
+    
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
