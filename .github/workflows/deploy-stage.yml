@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - dev
+  workflow_dispatch:
 # add environment variables for ALL jobs
 env:
   MONGODB_DB_NAME: gha-demo
